@@ -38,3 +38,30 @@ class FirstKelement
         System.out.println(FindElement(arr, k, arr.length));
     }
 }
+
+// Optimised
+import java.util.*;
+
+class FirstKelement {
+    static int FindElement(int arr[], int k) {
+        Map<Integer, Integer> freq = new HashMap<>();
+
+        // Count frequencies
+        for (int num : arr)
+            freq.put(num, freq.getOrDefault(num, 0) + 1);
+
+        // Return the first element in order of appearance that occurs k times
+        for (int num : arr)
+            if (freq.get(num) == k)
+                return num;
+
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        int k = 2;
+        int arr[] = {2, 3, 4, 2, 2, 5, 5};
+
+        System.out.println(FindElement(arr, k)); 
+    }
+}
